@@ -1,0 +1,24 @@
+class Solution:
+    def countVowelSubstrings(self, word: str) -> int:
+        vowels=set('aeiou')
+        count=0
+        n=len(word)
+        i=0
+        while i<n:
+            if word[i] in vowels:
+                j=i
+                while j<n and word[j] in vowels:
+                    j+=1
+                for start in range(i,j):
+                    seenv=set()
+                    for end in range(start,j):
+                        currentv=word[end]
+                        seenv.add(currentv)
+                        if len(seenv)==5:
+                            count += 1
+                i=j
+            else:
+                i+=1
+        return count
+
+                     
