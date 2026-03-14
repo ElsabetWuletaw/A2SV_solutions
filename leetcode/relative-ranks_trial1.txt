@@ -1,0 +1,17 @@
+class Solution:
+    def findRelativeRanks(self, score: List[int]) -> List[str]:
+        sorted_s = sorted(score, reverse=True)
+        rank = {}
+        for i in range(len(sorted_s)):
+            if i == 0:
+                rank[sorted_s[i]] = "Gold Medal"
+            elif i == 1:
+                rank[sorted_s[i]] = "Silver Medal"
+            elif i == 2:
+                rank[sorted_s[i]] = "Bronze Medal"
+            else:
+                rank[sorted_s[i]] = str(i + 1)
+
+        return [rank[s] for s in score]
+
+    
