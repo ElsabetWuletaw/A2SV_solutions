@@ -1,0 +1,17 @@
+class Solution:
+    def getAverages(self, nums: List[int], k: int) -> List[int]:
+        n = len(nums)
+        window_size = 2 * k + 1
+        answer = [-1] * n
+        if window_size > n:
+            return answer
+        window_sum = sum(nums[:window_size])
+        center = k
+        answer[center] = window_sum // window_size
+        for i in range(window_size, n):
+            window_sum += nums[i]
+            window_sum -= nums[i - window_size]
+            center += 1
+            answer[center] = window_sum // window_size
+
+        return answer
