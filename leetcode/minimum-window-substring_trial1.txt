@@ -1,0 +1,24 @@
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        need = Counter(t)
+        window = {}
+        have = 0
+        need_count = len(need)
+        i = 0
+        res = ""
+        res_len = len(s) + 1
+        for j in range(len(s)):
+            char = s[j]
+            window[char] = window.get(char, 0) + 1
+            if char in need and window[char] == need[char]:
+                have += 1
+            while have == need_count:
+                if (j - i + 1) < res_len:
+                    res = s[i:j+1]
+                    res_len = j - i + 1
+                window[s[i]] -= 1
+                if s[i] in need and window[s[i]] < need[s[i]]:
+                    have -= 1
+                i += 1
+
+        return res
