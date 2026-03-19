@@ -3,7 +3,6 @@ class Solution:
         l = 0
         c = Counter()
         ans = 0
-        
         for r in range(len(s)):
             while s[r] in c:
                 c[s[l]] -= 1
