@@ -1,0 +1,22 @@
+class Solution:
+    def balancedString(self, s: str) -> int:
+        n = len(s)
+        target = n // 4
+        count = {'Q': 0, 'W': 0, 'E': 0, 'R': 0}
+        for ch in s:
+            count[ch] += 1
+        if count['Q'] == target and count['W'] == target and count['E'] == target and count['R'] == target:
+            return 0
+        i = 0
+        min_len = n
+        for j in range(n):
+            count[s[j]] -= 1
+            while (count['Q'] <= target and
+                   count['W'] <= target and
+                   count['E'] <= target and
+                   count['R'] <= target):
+                min_len = min(min_len, j - i + 1)
+                count[s[i]] += 1
+                i += 1
+
+        return min_len
