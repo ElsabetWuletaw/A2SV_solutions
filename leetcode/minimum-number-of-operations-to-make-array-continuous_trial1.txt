@@ -1,0 +1,14 @@
+class Solution:
+    def minOperations(self, nums: List[int]) -> int:
+        n = len(nums)
+        vals = sorted(set(nums))
+        m = len(vals)
+        ans = n
+        j = 0
+        for i in range(m):
+            while j < m and vals[j] < vals[i] + n:
+                j += 1
+            kept = j - i
+            ans = min(ans, n - kept)
+
+        return ans
